@@ -204,6 +204,7 @@ class Mamba(nn.Module):
                 ssm_state.copy_(last_state)
             y = rearrange(y, "b d l -> b l d")
             out = self.out_proj(y)
+            import pdb;pdb.set_trace()
         return out
 
     def step(self, hidden_states, conv_state, ssm_state):
