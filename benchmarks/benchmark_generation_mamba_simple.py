@@ -42,7 +42,6 @@ else:
 model.eval()
 print(f"Number of parameters: {sum(p.numel() for p in model.parameters() if p.requires_grad)}")
 # sum(p.numel() for p in model.parameters())
-from torchinfo import summary
 
 # 假设model已经被加载，并处于eval模式
 model.eval()
