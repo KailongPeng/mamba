@@ -45,8 +45,11 @@ print(f"Number of parameters: {sum(p.numel() for p in model.parameters() if p.re
 
 # 假设model已经被加载，并处于eval模式
 model.eval()
-
-# import pdb ; pdb.set_trace()
+from torchprofile import profile_macs
+import pdb ; pdb.set_trace()
+inputs = torch.randn(args.batch, args.promptlen).to(device=device)
+# 使用profile_macs计算MACs
+macs = profile_macs(model, inputs)
 
 torch.random.manual_seed(0)
 if args.prompt is None:
