@@ -47,13 +47,7 @@ from torchinfo import summary
 # 假设model已经被加载，并处于eval模式
 model.eval()
 
-# # 针对这个示例，我们使用args.promptlen作为输入序列长度
-# input_size = (args.batch, args.promptlen)
-#
-# # 打印模型概览
-# summary(model, input_size=input_size, device=device)
-
-import pdb ; pdb.set_trace()
+# import pdb ; pdb.set_trace()
 
 torch.random.manual_seed(0)
 if args.prompt is None:

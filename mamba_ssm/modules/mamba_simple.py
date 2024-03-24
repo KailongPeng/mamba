@@ -115,6 +115,7 @@ class Mamba(nn.Module):
         self.D._no_weight_decay = True
 
         self.out_proj = nn.Linear(self.d_inner, self.d_model, bias=bias, **factory_kwargs)
+        import pdb ; pdb.set_trace()
 
     def forward(self, hidden_states, inference_params=None):
         """
