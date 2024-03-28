@@ -21,6 +21,7 @@ class SelectiveScanFn(torch.autograd.Function):
     @staticmethod
     def forward(ctx, u, delta, A, B, C, D=None, z=None, delta_bias=None, delta_softplus=False,
                 return_last_state=False):
+        import pdb; pdb.set_trace()
         if u.stride(-1) != 1:
             u = u.contiguous()
         if delta.stride(-1) != 1:
@@ -43,6 +44,7 @@ class SelectiveScanFn(torch.autograd.Function):
         ctx.delta_softplus = delta_softplus
         ctx.has_z = z is not None
         last_state = x[:, :, -1, 1::2]  # (batch, dim, dstate)
+        import pdb; pdb.set_trace()
         if not ctx.has_z:
             ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, x)
             return out if not return_last_state else (out, last_state)
@@ -71,6 +73,7 @@ class SelectiveScanFn(torch.autograd.Function):
         dz = rest[0] if ctx.has_z else None
         dB = dB.squeeze(1) if getattr(ctx, "squeeze_B", False) else dB
         dC = dC.squeeze(1) if getattr(ctx, "squeeze_C", False) else dC
+        import pdb; pdb.set_trace()
         return (du, ddelta, dA, dB, dC,
                 dD if D is not None else None,
                 dz,

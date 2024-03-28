@@ -115,7 +115,7 @@ class Mamba(nn.Module):
         self.D._no_weight_decay = True
 
         self.out_proj = nn.Linear(self.d_inner, self.d_model, bias=bias, **factory_kwargs)
-        import pdb ; pdb.set_trace()
+        # import pdb ; pdb.set_trace()
 
     def forward(self, hidden_states, inference_params=None):
         """
@@ -187,16 +187,28 @@ class Mamba(nn.Module):
             B = rearrange(B, "(b l) dstate -> b dstate l", l=seqlen).contiguous()
             C = rearrange(C, "(b l) dstate -> b dstate l", l=seqlen).contiguous()
             assert self.activation in ["silu", "swish"]
-            import pdb ; pdb.set_trace()
+
+            # parameters from : python kp_test.py
+            import pdb; pdb.set_trace()
+            print(f"x.shape = {x.shape}")
+            print(f"dt.shape = {dt.shape}")
+            print(f"A.shape = {A.shape}")
+            print(f"B.shape = {B.shape}")
+            print(f"C.shape = {C.shape}")
+            print(f"self.D.shape = {self.D.shape}")
+            print(f"z.shape = {z.shape}")
+            print(f"self.dt_proj.bias.float().shape = {self.dt_proj.bias.float().shape}")
+            print(f"self.dt_proj.bias.float() = {self.dt_proj.bias.float()}")
+
             y = selective_scan_fn(
-                x,
-                dt,
-                A,
-                B,
-                C,
-                self.D.float(),
-                z=z,
-                delta_bias=self.dt_proj.bias.float(),
+                x,  # x.shape = torch.Size([2, 32, 64])
+                dt,   # torch.Size([2, 32, 64])
+                A, # torch.Size([32, 16])
+                B, # torch.Size([2, 16, 64])
+                C, # torch.Size([2, 16, 64])
+                self.D.float(),  # self.D.shape = torch.Size([32])
+                z=z,  # torch.Size([2, 32, 64])
+                delta_bias=self.dt_proj.bias.float(),  # self.dt_proj.bias.float().shape = torch.Size([32])
                 delta_softplus=True,
                 return_last_state=ssm_state is not None,
             )
