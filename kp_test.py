@@ -11,7 +11,7 @@ from mamba_ssm import Mamba
     
 """
 batch, length, dim = 64, 158, 768  # batch, length, dim # from arc_easy
-x = torch.randn(batch, length, dim).to("cuda")
+x = torch.randn(batch, length, dim).to("cuda")  #(B, L, D)
 model = Mamba(
     # This module uses roughly 3 * expand * d_model^2 parameters
     d_model=dim, # Model dimension d_model

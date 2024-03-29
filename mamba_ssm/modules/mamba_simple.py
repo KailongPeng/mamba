@@ -122,6 +122,7 @@ class Mamba(nn.Module):
         hidden_states: (B, L, D)
         Returns: same shape as hidden_states
         """
+        import pdb; pdb.set_trace()
         batch, seqlen, dim = hidden_states.shape
 
         conv_state, ssm_state = None, None
@@ -199,16 +200,30 @@ class Mamba(nn.Module):
             print(f"z.shape = {z.shape}")
             print(f"self.dt_proj.bias.float().shape = {self.dt_proj.bias.float().shape}")
             print(f"self.dt_proj.bias.float() = {self.dt_proj.bias.float()}")
+            """
+            (B, L, D) = (64, 158, 768)
+            x.shape = torch.Size([64, 1536, 158]) = (B, 
+            dt.shape = torch.Size([64, 1536, 158])
+            A.shape = torch.Size([1536, 16])
+            B.shape = torch.Size([64, 16, 158])
+            C.shape = torch.Size([64, 16, 158])
+            self.D.shape = torch.Size([1536])
+            z.shape = torch.Size([64, 1536, 158])
+            self.dt_proj.bias.float().shape = torch.Size([1536])
+            self.dt_proj.bias.float() = Parameter containing:
+            tensor([-3.6513, -3.6421, -5.8888,  ..., -2.5840, -3.3969, -4.5702],
+                   device='cuda:0', requires_grad=True)
 
+            """
             y = selective_scan_fn(
-                x,  # x.shape = torch.Size([2, 32, 64])
-                dt,   # torch.Size([2, 32, 64])
-                A, # torch.Size([32, 16])
-                B, # torch.Size([2, 16, 64])
-                C, # torch.Size([2, 16, 64])
-                self.D.float(),  # self.D.shape = torch.Size([32])
-                z=z,  # torch.Size([2, 32, 64])
-                delta_bias=self.dt_proj.bias.float(),  # self.dt_proj.bias.float().shape = torch.Size([32])
+                x,
+                dt,
+                A,
+                B,
+                C,
+                self.D.float(),
+                z=z,
+                delta_bias=self.dt_proj.bias.float(),
                 delta_softplus=True,
                 return_last_state=ssm_state is not None,
             )
