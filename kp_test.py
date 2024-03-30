@@ -9,6 +9,11 @@ from mamba_ssm import Mamba
     parameters from 
         python evals/lm_harness_eval.py --model hf --model_args pretrained=EleutherAI/pythia-160m --tasks arc_easy --device cuda --batch_size 64
     
+    运行： 
+    interactive_gpu
+    cd_mamba
+    python -u kp_test.py
+    
 """
 batch, length, dim = 64, 158, 768  # batch, length, dim # from arc_easy
 x = torch.randn(batch, length, dim).to("cuda")  #(B, L, D)
@@ -20,4 +25,5 @@ model = Mamba(
     expand=2,    # Block expansion factor
 ).to("cuda")
 y = model(x)
+import pdb; pdb.set_trace()
 assert y.shape == x.shape
