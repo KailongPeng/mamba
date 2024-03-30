@@ -43,7 +43,7 @@ model.eval()
 print(f"Number of parameters: {sum(p.numel() for p in model.parameters() if p.requires_grad)}")
 # sum(p.numel() for p in model.parameters())
 
-# import pdb ; pdb.set_trace()
+import pdb ; pdb.set_trace()
 # from torchprofile import profile_macs
 # inputs = torch.randn(args.batch, args.promptlen).to(device=device)
 # # 使用profile_macs计算MACs
