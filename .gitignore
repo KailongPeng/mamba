@@ -1,5 +1,8 @@
 *__pycache__/
 *.egg-info/
 build/
+
 *.so
 3rdparty/
+*.hip
+*_hip.*
