@@ -220,7 +220,7 @@ class MambaLMHeadModel(nn.Module, GenerationMixin):
         initializer_cfg=None,
         device=None,
         dtype=None,
-    ) -> None:
+    ) -> None:        
         self.config = config
         d_model = config.d_model
         n_layer = config.n_layer
@@ -234,6 +234,9 @@ class MambaLMHeadModel(nn.Module, GenerationMixin):
         fused_add_norm = config.fused_add_norm
         pad_vocab_size_multiple = config.pad_vocab_size_multiple
         factory_kwargs = {"device": device, "dtype": dtype}
+
+        print(f"MambaLMHeadModel config={config}")
+        print(f"MambaLMHeadModel d_model={d_model}")
 
         super().__init__()
         if vocab_size % pad_vocab_size_multiple != 0:

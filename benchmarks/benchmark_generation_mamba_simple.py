@@ -31,7 +31,7 @@ repeats = 3
 device = "cuda"
 dtype = torch.float16
 
-print(f"Loading model {args.model_name}")
+print(f"Loading model {args.model_name}")  # Loading model state-spaces/mamba-130m
 is_mamba = args.model_name.startswith("state-spaces/mamba") or args.model_name.startswith("state-spaces/transformerpp")
 if is_mamba:
     tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")
