@@ -19,4 +19,8 @@ python benchmarks/benchmark_generation_mamba_simple.py --model-name "state-space
 
 echo "done"
 
+# """
+# cd /gpfs/milgram/project/turk-browne/projects/SoftHebb/mamba/mamba 
+# sbatch --array=1-1 kailong/run_generate.sh
+# log 27896840_1
 

@@ -46,7 +46,7 @@ print(f"Number of parameters: {sum(p.numel() for p in model.parameters() if p.re
 # 遍历模型的参数，打印每一层的名称、参数数量和维度信息
 for name, param in model.named_parameters(): print(f"{name}: {param.numel()} elements, Shape: {param.size()}")
 
-import pdb ; pdb.set_trace()
+# import pdb ; pdb.set_trace()
 # from torchprofile import profile_macs
 # inputs = torch.randn(args.batch, args.promptlen).to(device=device)
 # # 使用profile_macs计算MACs
