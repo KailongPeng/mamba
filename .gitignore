@@ -6,3 +6,4 @@ build/
 3rdparty/
 *.hip
 *_hip.*
+.idea/*
