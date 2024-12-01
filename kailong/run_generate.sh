@@ -14,8 +14,8 @@ cd /gpfs/milgram/project/turk-browne/projects/SoftHebb/mamba/mamba
 module load miniconda 
 conda activate mamba-env4
 
-echo python benchmarks/benchmark_generation_mamba_simple.py --model-name "state-spaces/mamba-130m" --batch 128
-python benchmarks/benchmark_generation_mamba_simple.py --model-name "state-spaces/mamba-130m" --batch 128
+echo python -u benchmarks/benchmark_generation_mamba_simple.py --model-name "state-spaces/mamba-130m" --batch 128
+python -u benchmarks/benchmark_generation_mamba_simple.py --model-name "state-spaces/mamba-130m" --batch 128
 
 echo "done"
 
