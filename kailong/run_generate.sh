@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p psych_gpu #psych_day  srun --pty -p psych_gpu --time=06:00:00 --gpus 1 --mem=50g bash
+#SBATCH -p psych_gpu
 #SBATCH --job-name=generate
 #SBATCH --ntasks=1 --nodes=1
 #SBATCH --time=6:00:00
