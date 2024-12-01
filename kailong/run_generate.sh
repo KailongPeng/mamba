@@ -8,7 +8,7 @@
 #SBATCH --gpus 1 
 
 set -e
-# nvidia-smi
+nvidia-smi
 
 cd /gpfs/milgram/project/turk-browne/projects/SoftHebb/mamba/mamba 
 module load miniconda 
